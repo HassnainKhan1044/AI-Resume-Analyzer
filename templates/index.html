@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+
+        <section class="hero">
+
+            <div class="logo">
+
+                <div class="logo-circle float">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+            </div>
+
+            <h1>AI Resume Analyzer</h1>
+
+            <p>
+
+                Upload your resume and receive an AI-powered analysis including
+                Resume Score, ATS Score, Job Match, Missing Skills,
+                Strengths, Weaknesses and Improvement Suggestions.
+
+            </p>
+
+        </section>
+
+
+        <section class="features">
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-robot"></i>
+
+                <h3>AI Analysis</h3>
+
+                <p>
+
+                    Analyze your resume using Google's Gemini AI.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>ATS Score</h3>
+
+                <p>
+
+                    Check how well your resume performs in ATS systems.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-bullseye"></i>
+
+                <h3>Job Match</h3>
+
+                <p>
+
+                    Compare your resume with any Job Description.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <form id="uploadForm"
+              action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="upload-box">
+
+                <label>
+
+                    <input
+                        id="resume"
+                        type="file"
+                        name="file"
+                        accept=".pdf"
+                        required>
+
+                    <div class="upload-content">
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        <h2>Upload Resume</h2>
+
+                        <p>
+
+                            Click to browse your PDF Resume
+
+                        </p>
+
+                        <span id="file-name">
+
+                            No file selected
+
+                        </span>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <div class="job-box">
+
+                <label>
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                    Job Description (Optional)
+
+                </label>
+
+                <textarea
+                    name="job_description"
+                    placeholder="Paste the complete Job Description here..."></textarea>
+
+            </div>
+
+
+            <button type="submit">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Analyze Resume
+
+            </button>
+
+        </form>
+
+
+        <div id="loading">
+
+            <div class="loader"></div>
+
+            <h2>Analyzing Resume...</h2>
+
+            <p>
+
+                Please wait while Gemini AI analyzes your resume.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer">
+
+            Built with ❤️ using FastAPI & Gemini AI
+
+        </div>
+
+    </div>
+
+
+<script>
+
+const fileInput=document.getElementById("resume");
+
+const fileName=document.getElementById("file-name");
+
+fileInput.addEventListener("change",function(){
+
+if(this.files.length>0){
+
+fileName.innerHTML=this.files[0].name;
+
+}
+
+});
+
+
+document.getElementById("uploadForm").addEventListener("submit",function(){
+
+document.getElementById("loading").style.display="block";
+
+});
+
+</script>
+
+</body>
+
+</html>
